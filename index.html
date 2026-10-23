@@ -1,23 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Water Quest</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link href="style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-  <div class="container">
-    <h1>Water Quest</h1>
-    <p class="game-instructions">Collect 20 items to complete the game!</p>
-    <div class="stats">
-      <p>Cans Collected: <span id="current-cans">0</span></p>
-      <p>Time Left: <span id="timer">30</span>s</p>
+  <main class="container">
+    <header class="game-header">
+      <img class="brand-logo" src="img/cw_logo_horizontal.png" alt="charity: water">
+      <h1>Water Quest</h1>
+    </header>
+    <p class="game-instructions">Collect 20 cans in 30 seconds. Avoid red contaminants that cost 2 points!</p>
+    <div class="stats" aria-live="polite">
+      <p>Cans Collected: <strong id="current-cans">0</strong></p>
+      <p>Time Left: <strong id="timer">30</strong>s</p>
     </div>
-    <div id="achievements" class="achievement"></div>
-    <div class="game-grid"></div>
-    <button id="start-game">Start Game</button>
-  </div>
+    <div id="achievements" class="achievement" role="status" aria-live="polite"></div>
+    <div class="game-grid" aria-label="Water can collection grid"></div>
+    <div class="game-controls">
+      <button id="start-game" type="button">Start Game</button>
+      <button id="reset-game" class="reset-button" type="button" aria-label="Reset game">Reset</button>
+    </div>
+  </main>
+  <div id="confetti" class="confetti" aria-hidden="true"></div>
   <script src="script.js"></script>
 </body>
 </html>
