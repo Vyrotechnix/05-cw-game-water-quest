@@ -12,18 +12,42 @@
       <img class="brand-logo" src="img/cw_logo_horizontal.png" alt="charity: water">
       <h1>Water Quest</h1>
     </header>
-    <p class="game-instructions">Collect 20 cans in 30 seconds. Avoid red contaminants that cost 2 points!</p>
+    <p id="game-instructions" class="game-instructions">Collect 20 cans in 30 seconds. Avoid red contaminants that cost 2 points!</p>
+    <fieldset id="difficulty-options" class="difficulty-options">
+      <legend>Choose your challenge</legend>
+      <label class="difficulty-option">
+        <input type="radio" name="difficulty" value="easy">
+        <span>Easy</span>
+      </label>
+      <label class="difficulty-option">
+        <input type="radio" name="difficulty" value="normal" checked>
+        <span>Normal</span>
+      </label>
+      <label class="difficulty-option">
+        <input type="radio" name="difficulty" value="hard">
+        <span>Hard</span>
+      </label>
+    </fieldset>
     <div class="stats" aria-live="polite">
-      <p>Cans Collected: <strong id="current-cans">0</strong></p>
+      <p>Cans Collected: <strong id="current-cans">0</strong><span class="stat-divider"> / </span><strong id="goal-count">20</strong></p>
       <p>Time Left: <strong id="timer">30</strong>s</p>
     </div>
+    <progress id="goal-progress" class="goal-progress" max="20" value="0" aria-label="Mission progress"></progress>
     <div id="achievements" class="achievement" role="status" aria-live="polite"></div>
     <div class="game-grid" aria-label="Water can collection grid"></div>
     <div class="game-controls">
       <button id="start-game" type="button">Start Game</button>
       <button id="reset-game" class="reset-button" type="button" aria-label="Reset game">Reset</button>
+      <label class="sound-setting"><input id="sound-effects" type="checkbox" checked> Sound effects</label>
     </div>
   </main>
+  <footer class="mission-footer">
+    <p>Clean water changes everything. Learn about the mission behind every drop.</p>
+    <div class="mission-links">
+      <a href="https://www.charitywater.org/" target="_blank" rel="noopener noreferrer">Our mission</a>
+      <a href="https://www.charitywater.org/donate" target="_blank" rel="noopener noreferrer">Donate</a>
+    </div>
+  </footer>
   <div id="confetti" class="confetti" aria-hidden="true"></div>
   <script src="script.js"></script>
 </body>

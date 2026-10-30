@@ -25,6 +25,7 @@ Fonts:
   --sky: #dff2ff;
   --paper: #fff;
   --red: #f5402c;
+  --green: #159a48;
 }
 
 * {
@@ -75,6 +76,61 @@ h1 {
   line-height: 1.45;
 }
 
+.difficulty-options {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 0 18px;
+  padding: 0;
+  border: 0;
+}
+
+.difficulty-options legend {
+  width: 100%;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.difficulty-option {
+  position: relative;
+  cursor: pointer;
+}
+
+.difficulty-option input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.difficulty-option span {
+  display: block;
+  min-width: 88px;
+  padding: 9px 16px;
+  border: 2px solid #d5d5cf;
+  border-radius: 4px;
+  text-align: center;
+  transition: background-color 150ms, border-color 150ms, color 150ms;
+}
+
+.difficulty-option input:checked + span {
+  background: var(--yellow);
+  border-color: var(--ink);
+  font-weight: 700;
+}
+
+.difficulty-option input:focus-visible + span {
+  outline: 3px solid var(--blue);
+  outline-offset: 3px;
+}
+
+.difficulty-options:disabled .difficulty-option {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
 .stats {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -97,6 +153,25 @@ h1 {
   font-size: 1.2em;
 }
 
+.stat-divider {
+  color: #777;
+}
+
+.goal-progress {
+  display: block;
+  width: 100%;
+  height: 10px;
+  margin: -4px 0 18px;
+  overflow: hidden;
+  appearance: none;
+  border: 0;
+  border-radius: 5px;
+}
+
+.goal-progress::-webkit-progress-bar { background: #e7e7e2; }
+.goal-progress::-webkit-progress-value { background: var(--green); transition: width 180ms ease-out; }
+.goal-progress::-moz-progress-bar { background: var(--green); }
+
 .score-pop { animation: scorePop 0.35s ease-out; }
 
 .achievement {
@@ -117,6 +192,14 @@ h1 {
 
 .achievement.won { background: #def7e3; color: #137d39; }
 .achievement.lost { background: #fff1c2; color: #7a5700; }
+.achievement.milestone {
+  display: grid;
+  place-items: center;
+  padding: 10px 14px;
+  background: #fff6cf;
+  border-left: 5px solid var(--yellow);
+  color: #594800;
+}
 
 .game-grid {
   display: grid;
@@ -196,12 +279,31 @@ button#start-game {
 
 .game-controls {
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
   gap: 14px;
   margin-top: 24px;
 }
 
 .game-controls button { flex: 0 1 auto; }
+
+.sound-setting {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.sound-setting input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--green);
+  cursor: pointer;
+}
 
 .reset-button {
   min-height: 48px;
@@ -276,6 +378,34 @@ button#start-game:disabled {
   animation: confettiFall var(--duration) var(--delay) ease-in forwards;
 }
 
+.mission-footer {
+  width: min(720px, 100%);
+  margin: 0 auto 24px;
+  padding: 0 12px;
+  text-align: center;
+}
+
+.mission-footer p {
+  margin: 0 0 10px;
+  color: #4a4a45;
+  font-size: 0.92rem;
+}
+
+.mission-links {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+}
+
+.mission-links a {
+  color: #075e9b;
+  font-weight: 700;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.mission-links a:hover { color: #003e6b; }
+
 @keyframes obstacleShake {
   25% { transform: translateX(-8px) rotate(-8deg); }
   50% { transform: translateX(7px) rotate(8deg); }
@@ -297,6 +427,8 @@ button#start-game:disabled {
   .container { margin: 8px auto; }
   .stats { gap: 8px; }
   .stats p { font-size: 0.88rem; }
+  .difficulty-option { flex: 1; }
+  .difficulty-option span { min-width: 0; padding: 9px 8px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
